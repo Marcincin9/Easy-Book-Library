@@ -6,10 +6,12 @@
 
    body{
     background-color:#EAE3D2;
+    
+    font-family: 'Montserrat', sans-serif
    }
    
    h1, h2, h3, h4, p{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Merriweather', serif;
    }
    
    .main-container{
@@ -17,11 +19,11 @@
    }
 
    .header{
-   display: flex;
-   flex-wrap: wrap;
-   margin: auto;
-   justify-content: center;
-   background-color: #607EAA;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    background-color: #607EAA;
    
    }
    .header h1, .top-buttons{
@@ -36,8 +38,42 @@
 
    }
 
+   .form-section{
+  
+
+   }
+
+   input{
+        width: 80%;
+        height: 20px;
+        border: 2px solid;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        border-radius: 5px;
+        padding: 1.5vmin;
+   }
+
+   label,
+   .submit-button{
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        justify-content: center;
+        padding: 20px 0px 5px;
+   }
+
+   .submit-button{
+      width: 150px;
+   }
+
+   button {
+       font-family: 'Montserrat', sans-serif
+   }
+
    #addNewBook,
-   #resetBooks {
+   #resetBooks,
+   #submitBook {
        flex-grow: 1;
        text-align: center;
        margin: 1vmin;
@@ -48,6 +84,7 @@
    }
 
    #addNewBook:hover,
-   #resetBooks:hover{
+   #resetBooks:hover,
+   #submitBook:hover{
     background-color:#EAE3D2;
    }
