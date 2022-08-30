@@ -64,7 +64,7 @@
 
    #addNewBook,
    #resetBooks,
-   #submitBook {
+   #formSubmit {
        flex-grow: 1;
        text-align: center;
        margin: 1vmin;
@@ -75,8 +75,8 @@
    }
 
    #addNewBook:hover,
-   #resetBooks:hover,
-   #submitBook:hover{
+   #resetBooks:hover
+   {
     background-color:#EAE3D2;
    }
 
@@ -89,3 +89,44 @@
        transform: translate(-50%, -50%);
        z-index: 9;
    }
+
+   /* Add styles to the form container */
+   .form-container {
+       width: 300px;
+       padding: 10px;
+       background-color: rgba(255, 255, 255, 0.9);
+   }
+
+  
+   /* Set a style for the submit/login button */
+   .form-container .btn {
+       background-color: #607EAA;
+       color: #ffffff;
+   }
+
+   /* Add a red background color to the cancel button */
+   .form-container .cancel {
+       background-color: red;
+   }
+
+   /* Add some hover effects to buttons */
+   .form-container .btn:hover,
+   .open-button:hover {
+       opacity: 0.9;
+       background-color: #607EAA;
+   }
+
+   .removeButton {
+       background-color: gray;
+       color: white;
+       width: 10vmin;
+       height: 4vmin;
+       transition-duration: 0.4s;
+
+   }
+   .removeButton:hover {
+       background-color: rgba(151, 23, 23, 0.733);
+       color: white;
+   }
+
+ 
