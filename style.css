@@ -13,10 +13,6 @@
    h1, h2, h3, h4, p{
     font-family: 'Merriweather', serif;
    }
-   
-   .main-container{
-   
-   }
 
    .header{
     display: flex;
@@ -35,11 +31,6 @@
     color: white;
     text-align: center;
     width: 100%;
-
-   }
-
-   .form-section{
-  
 
    }
 
