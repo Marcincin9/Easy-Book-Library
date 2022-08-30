@@ -47,3 +47,23 @@ class Book{
         this.genre = genre;
     }
 }
+
+function addBookToLibrary(newBook) {
+    myLibrary.push(newBook);
+}
+
+// function creating card with books
+function displayBooks() {
+    makeCard(myLibrary[myLibrary.length - 1]);
+}
+
+// open and close form window
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    
+}
