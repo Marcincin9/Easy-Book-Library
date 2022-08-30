@@ -13,3 +13,37 @@ function getBookFromInput(book) {
     let genre = document.getElementById('formGenre').value;
     return new Book(title, author, genre);
 }
+
+// function add books to the library
+function addBook(book) {
+    let newBook = getBookFromInput(book);
+    addBookToLibrary(newBook);
+    displayBook()
+    closeForm();
+    book.preventDefault();
+    document.getElementById('form').reset();
+}
+
+// function reseting cards
+function resetCards() {
+    while (container.firstChild) {
+        container.removeChild(container.lastChild);
+    }
+    myLibrary = [];
+}
+
+// function changeBook
+
+
+// add constructor
+class Book{
+    constructor(
+        title = "Unknown",
+        author = "Unknown",
+        genre = "Unknown",
+    ) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
+}
