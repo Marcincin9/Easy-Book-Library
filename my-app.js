@@ -1,38 +1,66 @@
 const container = document.querySelector('.container');
 
+const updateLibrary = (myLibrary) => {
+    return sessionStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+};
+
+const getLibrary = () => {
+    return JSON.parse(sessionStorage.getItem('myLibrary'));
+};
+
+let myLibrary = getLibrary();
+
+// function reseting cards
+const clearLibrary = () => {
+    return updateLibrary([]);
+};
+
+const clearAllBooks = () => {
+    clearLibrary();
+    displayBooks();
+};
+
+
+if (sessionStorage.getItem('myLibrary') === null) {
+    clearLibrary();
+}
+
+const changeBook = () => {
+    console.log('changeBook');
+};
+
+const displayBook = () => {
+    console.log('displayBook');
+};
+
+const removeBookFromLibrary = (book) => {
+    myLibrary.splice(book, 1);
+    updateLibrary(myLibrary);
+    displayBooks(); // display books
+};
+
 document.getElementById('form').addEventListener('submit', addBook);
-document.getElementById('resetBooks').addEventListener('click', resetCards);
+document.getElementById('resetBooks').addEventListener('click', clearAllBooks);
 container.addEventListener('click', changeBook);
 
-let myLibrary = [];
+displayBooks();
 
 // function with variable collected data from input
 function getBookFromInput(book) {
-    let title = document.getElementById('formTitle').value;
-    let author = document.getElementById('formAuthor').value;
-    let genre = document.getElementById('formGenre').value;
+    const title = document.getElementById('formTitle').value;
+    const author = document.getElementById('formAuthor').value;
+    const genre = document.getElementById('formGenre').value;
     return new Book(title, author, genre);
 }
 
 // function add books to the library
 function addBook(book) {
-    let newBook = getBookFromInput(book);
+    const newBook = getBookFromInput(book);
     addBookToLibrary(newBook);
-    displayBook()
-    closeForm();
+    displayBooks();
     book.preventDefault();
     document.getElementById('form').reset();
 }
-
-// function reseting cards
-function resetCards() {
-    while (container.firstChild) {
-        container.removeChild(container.lastChild);
-    }
-    myLibrary = [];
-}
-
-// function changeBook
 
 
 // add constructor
@@ -48,42 +76,48 @@ class Book{
     }
 }
 
-function addBookToLibrary(newBook) {
-    myLibrary.push(newBook);
+function addBookToLibrary(book) {
+    myLibrary.push(book);
+    updateLibrary(myLibrary);
 }
 
 // function creating card with books
 function displayBooks() {
-    makeCard(myLibrary[myLibrary.length - 1]);
+    container.innerHTML = ''; // reset container
+    myLibrary = getLibrary();
+
+    for (i = 0; i < myLibrary.length; i++) {
+        makeCard(myLibrary[i]);
+    }
 }
 
 // function to create new book cards
 
-function makeCard(bookToAdd)
+function makeCard(book)
 {
-    let card = document.createElement('div');
-    let title = document.createElement('h1');
-    let author = document.createElement('h2');
-    let genre = document.createElement('p');
-    let removeButton = document.createElement('BUTTON');
-    
-   
-   
+    const card = document.createElement('div');
+    const title = document.createElement('h1');
+    const author = document.createElement('h2');
+    const genre = document.createElement('p');
+    const removeButton = document.createElement('BUTTON');
+
     removeButton.className = 'removeButton';
     removeButton.innerText = 'Remove Book';
-    removeButton.setAttribute("data-index", myLibrary.indexOf(bookToAdd));
+    const bookIndex = myLibrary.indexOf(book);
+    removeButton.setAttribute("data-index", bookIndex);
+    removeButton.addEventListener('click', () => removeBookFromLibrary(bookIndex));
     card.classList.add('card');
 
-    title.textContent = bookToAdd.title;
-    author.textContent = bookToAdd.author;
-    genre.textContent = `${bookToAdd.genre} genre`;
-    
+    title.textContent = book.title;
+    author.textContent = book.author;
+    genre.textContent = `${book.genre} genre`;
 
     card.append(title);
     card.append(author);
     card.append(genre);
     card.append(removeButton);
-    card.setAttribute("data-index", myLibrary.indexOf(bookToAdd));
+    card.setAttribute("data-index", myLibrary.indexOf(book));
+
     container.append(card);
 }
 
@@ -93,7 +127,3 @@ function openForm() {
     document.getElementById("bookForm").style.display = "block";
 }
 
-function closeForm() {
-    document.getElementById("bookForm").style.display = "none";
-    
-}
